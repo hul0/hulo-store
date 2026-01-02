@@ -334,7 +334,7 @@ export default function ShopPage() {
                   <h4 className="font-black text-2xl mb-4 uppercase">
                     Tech Stack
                   </h4>
-                  <div className="flex flex-wrap gap-2 ">
+                  <div className="flex flex-wrap gap-4 ">
                     {allTechStacks.map((stack) => (
                       <button
                         key={stack}

@@ -35,7 +35,7 @@ export default function ProductPage() {
   }
 
   const handleBuyNow = () => {
-    const phoneNumber = "911234567890"; // Dummy number as requested
+    const phoneNumber = "+919593035680"; // Dummy number as requested
     const message = `Hi, I want to buy: ${product.name} - ${product.id}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -46,7 +46,7 @@ export default function ProductPage() {
   return (
     <>
       {/* Top Marquee Bar */}
-      <div className="marquee-bar">
+      {/* <div className="marquee-bar">
         <div className="marquee-container">
           <div className="marquee-content">
             INSTANT DELIVERY ON ALL APPS • NEW DROP: SAAS KITS VOL. 2 • SECURE
@@ -55,7 +55,7 @@ export default function ProductPage() {
             DISCORD FOR EARLY ACCESS •
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* Navigation */}
       <nav className="navigation">
@@ -67,16 +67,16 @@ export default function ProductPage() {
         </div>
 
         <div className="nav-links">
-          <Link href="/#trending" className="nav-link">
+          <Link href="/shop" className="nav-link">
             LATEST DROPS
           </Link>
-          <Link href="/#trending" className="nav-link">
+          <Link href="/shop" className="nav-link">
             WEB APPS
           </Link>
-          <Link href="/#trending" className="nav-link">
+          <Link href="/shop" className="nav-link">
             MOBILE
           </Link>
-          <Link href="/#trending" className="nav-link">
+          <Link href="/shop" className="nav-link">
             COMPONENTS
           </Link>
         </div>
@@ -211,7 +211,7 @@ export default function ProductPage() {
 
           {/* Product Info */}
           <div className="product-detail-info">
-            <div className="product-badge new">
+            <div className=" new ">
               {product.category.toUpperCase()}
             </div>
             <h1 className="product-detail-title">{product.name}</h1>
@@ -231,7 +231,7 @@ export default function ProductPage() {
                 {product.techStack.map((tech) => (
                   <button
                     key={tech}
-                    className="size-button"
+                    className="size-button btn-tech"
                     style={{
                       width: "auto",
                       padding: "0 12px",
@@ -285,40 +285,7 @@ export default function ProductPage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-content">
-          <Link href="/" className="footer-logo">
-            HULO.STORE
-          </Link>
-          <div className="footer-copyright">
-            © 2026 Gen Z Code. All rights reserved. Ship Fast.
-          </div>
-          <div className="footer-links">
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Twitter
-            </a>
-            <a
-              href="https://discord.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Discord
-            </a>
-          </div>
-        </div>
-      </footer>
+     
     </>
   );
 }
