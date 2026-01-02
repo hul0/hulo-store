@@ -2,18 +2,40 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useMemo, Suspense } from "react"
 import Link from "next/link"
+import { useSearchParams } from "next/navigation"
+import { products } from "@/lib/products"
 
-export default function HomePage() {
+// Wrap the main content in Suspense for useSearchParams
+function HomeContent() {
+  const searchParams = useSearchParams()
+  const categoryFilter = searchParams.get("category")
+  
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Searching for:", searchQuery)
     setSearchOpen(false)
   }
+
+  // Filter products based on Category (URL) and Search (Local State)
+  const filteredProducts = useMemo(() => {
+    return products.filter((product) => {
+      const matchesCategory = categoryFilter 
+        ? product.category.toLowerCase().replace(" ", "-") === categoryFilter.toLowerCase()
+        : true
+      
+      const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                            product.description.toLowerCase().includes(searchQuery.toLowerCase())
+
+      return matchesCategory && matchesSearch
+    })
+  }, [categoryFilter, searchQuery])
+
+  // Get trending products (fallback to first 4 if no filter)
+  const displayProducts = filteredProducts.length > 0 ? filteredProducts.slice(0, 4) : []
 
   return (
     <>
@@ -21,9 +43,9 @@ export default function HomePage() {
       <div className="marquee-bar">
         <div className="marquee-container">
           <div className="marquee-content">
-            FREE SHIPPING ON ORDERS OVER $75 • NEW DROP: SKATER BOY VOL. 2 • WORLDWIDE SHIPPING • JOIN THE DISCORD FOR
-            EARLY ACCESS • FREE SHIPPING ON ORDERS OVER $75 • NEW DROP: SKATER BOY VOL. 2 • WORLDWIDE SHIPPING • JOIN
-            THE DISCORD FOR EARLY ACCESS •
+            INSTANT DELIVERY ON ALL APPS • NEW DROP: SAAS KITS VOL. 2 • SECURE CODEBASE • JOIN THE DISCORD FOR EARLY
+            ACCESS • INSTANT DELIVERY ON ALL APPS • NEW DROP: SAAS KITS VOL. 2 • SECURE CODEBASE • JOIN THE DISCORD FOR
+            EARLY ACCESS •
           </div>
         </div>
       </div>
@@ -33,24 +55,24 @@ export default function HomePage() {
         {/* Logo */}
         <div className="logo">
           <Link href="/">
-            GZ<span>.</span>STORE
+            GZ<span>.</span>CODE
           </Link>
           <div className="beta-badge">BETA</div>
         </div>
 
-        {/* Links */}
+        {/* Links - Pointing to Shop Page for Better UX on Filtering */}
         <div className="nav-links">
-          <Link href="/#trending" className="nav-link">
+          <Link href="/shop" className="nav-link">
             LATEST DROPS
           </Link>
-          <Link href="/#trending" className="nav-link">
-            CLOTHING
+          <Link href="/shop?category=web-app" className="nav-link">
+            WEB APPS
           </Link>
-          <Link href="/#trending" className="nav-link">
-            SNEAKERS
+          <Link href="/shop?category=mobile-app" className="nav-link">
+            MOBILE
           </Link>
-          <Link href="/#trending" className="nav-link">
-            ACCESSORIES
+          <Link href="/shop?category=component" className="nav-link">
+            COMPONENTS
           </Link>
         </div>
 
@@ -101,7 +123,7 @@ export default function HomePage() {
               <circle cx="20" cy="21" r="1"></circle>
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
-            <span className="cart-badge">2</span>
+            <span className="cart-badge">0</span>
           </Link>
         </div>
       </nav>
@@ -112,7 +134,7 @@ export default function HomePage() {
             <form onSubmit={handleSearch}>
               <input
                 type="text"
-                placeholder="Search for products..."
+                placeholder="Search for apps, scripts..."
                 className="search-input"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -131,28 +153,28 @@ export default function HomePage() {
         {/* Left Content */}
         <div className="hero-content">
           {/* Badge */}
-          <div className="season-badge">SEASON 04 // FALL COLLECTION</div>
+          <div className="season-badge">SEASON 01 // DEV COLLECTION</div>
 
           {/* Headline */}
           <h1 className="hero-headline">
-            TOO COOL
+            SHIP CODE
             <br />
-            FOR <span className="hero-headline-highlight">SCHOOL.</span>
+            NO <span className="hero-headline-highlight">ERRORS.</span>
           </h1>
 
           {/* Subheadline */}
           <p className="hero-subtext">
-            Streetwear designed for the next generation of creators. Sustainable fabrics, oversized fits, and zero
-            compromises on the drip.
+            Premium codebases designed for the next generation of founders. Clean architecture, modern stacks, and zero
+            compromises on performance.
           </p>
 
           {/* CTA Buttons */}
           <div className="cta-buttons">
-            <Link href="#trending" className="btn-primary hover-lift">
-              SHOP THE DROP
+            <Link href="/shop" className="btn-primary hover-lift">
+              BROWSE CODE
             </Link>
-            <Link href="#trending" className="btn-secondary hover-lift">
-              VIEW LOOKBOOK
+            <Link href="/shop?category=component" className="btn-secondary hover-lift">
+              VIEW COMPONENTS
             </Link>
           </div>
 
@@ -164,8 +186,8 @@ export default function HomePage() {
               <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=100&h=100&fit=crop" alt="User" />
             </div>
             <div>
-              <div className="social-proof-title">12k+ Mini Icons</div>
-              <div className="social-proof-subtitle">Wearing GZ.STORE worldwide</div>
+              <div className="social-proof-title">2k+ Devs</div>
+              <div className="social-proof-subtitle">Shipping with GZ.CODE</div>
             </div>
           </div>
         </div>
@@ -190,17 +212,17 @@ export default function HomePage() {
           {/* Main Image */}
           <div className="main-image-container">
             <img
-              src="https://images.unsplash.com/photo-1596870230751-ebdfce98ec42?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-              alt="Kid in stylish streetwear hoodie"
+              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Code Editor Screen"
             />
-            <div className="price-tag">$45.00</div>
+            <div className="price-tag">$49.00</div>
           </div>
 
           {/* Secondary Image (Floating) */}
           <div className="secondary-image">
             <img
-              src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
-              alt="Kids sneakers close up"
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+              alt="Dashboard Analytics"
             />
           </div>
 
@@ -210,7 +232,7 @@ export default function HomePage() {
               src="https://images.unsplash.com/photo-1547447134-cd3f5c716030?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
               alt="Sticker"
             />
-            <div className="hot-badge">HOT</div>
+            <div className="hot-badge">PRO</div>
           </div>
 
           {/* Decorative Star */}
@@ -232,62 +254,25 @@ export default function HomePage() {
       <section className="trending-section" id="trending">
         <div className="container">
           <div className="trending-header">
-            <h3>Trending Now</h3>
-            <Link href="#trending">See All</Link>
+            <h3>Trending Scripts</h3>
+            <Link href="/shop">See All</Link>
           </div>
 
           <div className="product-grid">
-            {/* Product 1 */}
-            <Link href="/product/oversized-graffiti-tee" className="product-card hover-lift">
-              <div className="product-image">
-                <span className="product-badge new">NEW</span>
-                <img
-                  src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                  alt="Oversized Graffiti Tee"
-                />
-              </div>
-              <h4>Oversized Graffiti Tee</h4>
-              <p>$28.00</p>
-            </Link>
-
-            {/* Product 2 */}
-            <Link href="/product/neon-beanie" className="product-card hover-lift">
-              <div className="product-image">
-                <img
-                  src="https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                  alt="Neon Beanie"
-                />
-              </div>
-              <h4>Neon Beanie</h4>
-              <p>$15.00</p>
-            </Link>
-
-            {/* Product 3 */}
-            <Link href="/product/utility-cargo-pants" className="product-card hover-lift">
-              <div className="product-image">
-                <span className="product-badge sale">SALE</span>
-                <img
-                  src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                  alt="Utility Cargo Pants"
-                />
-              </div>
-              <h4>Utility Cargo Pants</h4>
-              <p>
-                <span className="price-old">$55.00</span> $42.00
-              </p>
-            </Link>
-
-            {/* Product 4 */}
-            <Link href="/product/chunky-skate-shoes" className="product-card hover-lift">
-              <div className="product-image">
-                <img
-                  src="https://images.unsplash.com/photo-1460353581641-37baddab0fa2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
-                  alt="Chunky Skate Shoes"
-                />
-              </div>
-              <h4>Chunky Skate Shoes</h4>
-              <p>$65.00</p>
-            </Link>
+            {displayProducts.map((product) => (
+              <Link key={product.id} href={`/product/${product.slug}`} className="product-card hover-lift">
+                <div className="product-image">
+                  {product.isNew && <span className="product-badge new">NEW</span>}
+                  {product.isSale && <span className="product-badge sale">SALE</span>}
+                  <img src={product.mainImage || "/placeholder.svg"} alt={product.name} />
+                </div>
+                <h4>{product.name}</h4>
+                <p>
+                  {product.originalPrice && <span className="price-old">${product.originalPrice.toFixed(2)}</span>} $
+                  {product.price.toFixed(2)}
+                </p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -296,15 +281,15 @@ export default function HomePage() {
       <footer className="footer">
         <div className="footer-content">
           <Link href="/" className="footer-logo">
-            GZ.STORE
+            GZ.CODE
           </Link>
-          <div className="footer-copyright">© 2023 Gen Z Store. All rights reserved. No Cap.</div>
+          <div className="footer-copyright">© 2026 Gen Z Code. All rights reserved. Ship Fast.</div>
           <div className="footer-links">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-              Instagram
+              GitHub
             </a>
-            <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer">
-              TikTok
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+              Twitter
             </a>
             <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
               Discord
@@ -313,5 +298,13 @@ export default function HomePage() {
         </div>
       </footer>
     </>
+  )
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<div style={{minHeight: "100vh", background: "black", color: "white"}}>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   )
 }
