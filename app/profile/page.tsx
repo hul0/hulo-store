@@ -105,7 +105,7 @@ export default function ProfilePage() {
               textAlign: "left",
               listStyle: "none",
               padding: 0,
-              spaceY: "10px",
+              
             }}
           >
             <li style={{ marginBottom: "0.5rem" }}>
@@ -125,17 +125,7 @@ export default function ProfilePage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-content">
-          <Link href="/" className="footer-logo">
-            HULO.STORE
-          </Link>
-          <div className="footer-copyright">
-            © 2026 Gen Z Code. All rights reserved. Ship Fast.
-          </div>
-        </div>
-      </footer>
+      
     </>
   );
 }

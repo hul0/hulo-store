@@ -428,39 +428,7 @@ export default function ShopPage() {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
-        <div className="footer-content">
-          <Link href="/" className="footer-logo">
-            HULO.STORE
-          </Link>
-          <div className="footer-copyright">
-            © 2026 Gen Z Code. All rights reserved. Ship Fast.
-          </div>
-          <div className="footer-links">
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Twitter
-            </a>
-            <a
-              href="https://discord.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Discord
-            </a>
-          </div>
-        </div>
-      </footer>
+      
     </>
   );
 }

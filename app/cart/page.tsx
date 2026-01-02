@@ -44,15 +44,7 @@ export default function CartPage() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-content">
-          <Link href="/" className="footer-logo">
-           HULO.STORE
-          </Link>
-          <div className="footer-copyright">© 2026 Gen Z Code. All rights reserved. Ship Fast.</div>
-        </div>
-      </footer>
+     
     </>
   )
 }
