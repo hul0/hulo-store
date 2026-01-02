@@ -1,47 +1,47 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import Link from "next/link"
-import { useParams, useRouter } from "next/navigation"
-import { products } from "@/lib/products"
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
+import { products } from "@/lib/products";
 
 export default function ProductPage() {
-  const params = useParams()
-  const router = useRouter()
-  const [searchOpen, setSearchOpen] = useState(false)
-  const [activeImage, setActiveImage] = useState("")
-  const [product, setProduct] = useState<(typeof products)[0] | null>(null)
+  const params = useParams();
+  const router = useRouter();
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [activeImage, setActiveImage] = useState("");
+  const [product, setProduct] = useState<(typeof products)[0] | null>(null);
 
   // Fetch product based on slug
   useEffect(() => {
     if (params.slug) {
-      const foundProduct = products.find((p) => p.slug === params.slug)
+      const foundProduct = products.find((p) => p.slug === params.slug);
       if (foundProduct) {
-        setProduct(foundProduct)
-        setActiveImage(foundProduct.mainImage)
+        setProduct(foundProduct);
+        setActiveImage(foundProduct.mainImage);
       } else {
         // Handle 404 or redirect in a real app
-        console.error("Product not found")
+        console.error("Product not found");
       }
     }
-  }, [params.slug])
+  }, [params.slug]);
 
   if (!product) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black text-white">
         <p>Loading Product...</p>
       </div>
-    )
+    );
   }
 
   const handleBuyNow = () => {
-    const phoneNumber = "911234567890" // Dummy number as requested
-    const message = `Hi, I want to buy: ${product.name} - ${product.id}`
-    const encodedMessage = encodeURIComponent(message)
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`
+    const phoneNumber = "911234567890"; // Dummy number as requested
+    const message = `Hi, I want to buy: ${product.name} - ${product.id}`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    window.open(whatsappUrl, "_blank")
-  }
+    window.open(whatsappUrl, "_blank");
+  };
 
   return (
     <>
@@ -49,9 +49,10 @@ export default function ProductPage() {
       <div className="marquee-bar">
         <div className="marquee-container">
           <div className="marquee-content">
-            INSTANT DELIVERY ON ALL APPS • NEW DROP: SAAS KITS VOL. 2 • SECURE CODEBASE • JOIN THE DISCORD FOR EARLY
-            ACCESS • INSTANT DELIVERY ON ALL APPS • NEW DROP: SAAS KITS VOL. 2 • SECURE CODEBASE • JOIN THE DISCORD FOR
-            EARLY ACCESS •
+            INSTANT DELIVERY ON ALL APPS • NEW DROP: SAAS KITS VOL. 2 • SECURE
+            CODEBASE • JOIN THE DISCORD FOR EARLY ACCESS • INSTANT DELIVERY ON
+            ALL APPS • NEW DROP: SAAS KITS VOL. 2 • SECURE CODEBASE • JOIN THE
+            DISCORD FOR EARLY ACCESS •
           </div>
         </div>
       </div>
@@ -60,7 +61,7 @@ export default function ProductPage() {
       <nav className="navigation">
         <div className="logo">
           <Link href="/">
-            GZ<span>.</span>CODE
+            HULO<span>.</span>STORE
           </Link>
           <div className="beta-badge">BETA</div>
         </div>
@@ -133,9 +134,20 @@ export default function ProductPage() {
 
       {searchOpen && (
         <div className="search-overlay" onClick={() => setSearchOpen(false)}>
-          <div className="search-container" onClick={(e) => e.stopPropagation()}>
-            <input type="text" placeholder="Search for products..." className="search-input" autoFocus />
-            <button className="search-close" onClick={() => setSearchOpen(false)}>
+          <div
+            className="search-container"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <input
+              type="text"
+              placeholder="Search for products..."
+              className="search-input"
+              autoFocus
+            />
+            <button
+              className="search-close"
+              onClick={() => setSearchOpen(false)}
+            >
               ✕
             </button>
           </div>
@@ -146,7 +158,10 @@ export default function ProductPage() {
       <main className="product-detail-section">
         <div className="product-detail-container">
           {/* Product Image & Gallery */}
-          <div className="product-detail-image-container" style={{ flex: "1.2" }}>
+          <div
+            className="product-detail-image-container"
+            style={{ flex: "1.2" }}
+          >
             <div className="product-detail-image">
               <img src={activeImage || "/placeholder.svg"} alt={product.name} />
             </div>
@@ -170,7 +185,10 @@ export default function ProductPage() {
                       width: "80px",
                       height: "80px",
                       borderRadius: "12px",
-                      border: activeImage === img ? "2px solid #000" : "1px solid #ddd",
+                      border:
+                        activeImage === img
+                          ? "2px solid #000"
+                          : "1px solid #ddd",
                       overflow: "hidden",
                       cursor: "pointer",
                       flexShrink: 0,
@@ -179,7 +197,11 @@ export default function ProductPage() {
                     <img
                       src={img || "/placeholder.svg"}
                       alt="Thumbnail"
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
                     />
                   </div>
                 ))}
@@ -189,21 +211,33 @@ export default function ProductPage() {
 
           {/* Product Info */}
           <div className="product-detail-info">
-            <div className="product-badge new">{product.category.toUpperCase()}</div>
+            <div className="product-badge new">
+              {product.category.toUpperCase()}
+            </div>
             <h1 className="product-detail-title">{product.name}</h1>
-            <div className="product-detail-price">${product.price.toFixed(2)}</div>
+            <div className="product-detail-price">
+              ${product.price.toFixed(2)}
+            </div>
 
             <p className="product-detail-description">{product.description}</p>
 
             {/* Tech Stack Info - Styled like Size Selection */}
             <div className="size-selection">
               <label className="size-label">TECH STACK</label>
-              <div className="size-options" style={{ flexWrap: "wrap", gap: "8px" }}>
+              <div
+                className="size-options"
+                style={{ flexWrap: "wrap", gap: "8px" }}
+              >
                 {product.techStack.map((tech) => (
                   <button
                     key={tech}
                     className="size-button"
-                    style={{ width: "auto", padding: "0 12px", cursor: "default", backgroundColor: "#f0f0f0" }}
+                    style={{
+                      width: "auto",
+                      padding: "0 12px",
+                      cursor: "default",
+                      backgroundColor: "#f0f0f0",
+                    }}
                   >
                     {tech}
                   </button>
@@ -214,12 +248,22 @@ export default function ProductPage() {
             {/* Extra Details */}
             <div
               className="product-extras"
-              style={{ marginTop: "1rem", marginBottom: "1.5rem", fontSize: "0.9rem", color: "#666" }}
+              style={{
+                marginTop: "1rem",
+                marginBottom: "1.5rem",
+                fontSize: "0.9rem",
+                color: "#666",
+              }}
             >
               {product.liveLink && (
                 <div style={{ marginBottom: "0.5rem" }}>
                   <strong>Live Demo: </strong>
-                  <a href={product.liveLink} target="_blank" rel="noreferrer" className="underline hover:text-black">
+                  <a
+                    href={product.liveLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="underline hover:text-black"
+                  >
                     View Live Preview
                   </a>
                 </div>
@@ -245,22 +289,36 @@ export default function ProductPage() {
       <footer className="footer">
         <div className="footer-content">
           <Link href="/" className="footer-logo">
-            GZ.CODE
+            HULO.STORE
           </Link>
-          <div className="footer-copyright">© 2026 Gen Z Code. All rights reserved. Ship Fast.</div>
+          <div className="footer-copyright">
+            © 2026 Gen Z Code. All rights reserved. Ship Fast.
+          </div>
           <div className="footer-links">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               GitHub
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Twitter
             </a>
-            <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://discord.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Discord
             </a>
           </div>
         </div>
       </footer>
     </>
-  )
+  );
 }

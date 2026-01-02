@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "GZ.STORE - Too Cool For School",
+  title: "HULO.STORE - Too Cool For School",
   description:
     "Streetwear designed for the next generation of creators. Sustainable fabrics, oversized fits, and zero compromises on the drip.",
   generator: "v0.app",

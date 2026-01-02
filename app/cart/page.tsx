@@ -9,7 +9,7 @@ export default function CartPage() {
       <nav className="navigation">
         <div className="logo">
           <Link href="/">
-            GZ<span>.</span>CODE
+            HULO<span>.</span>STORE
           </Link>
           <div className="beta-badge">BETA</div>
         </div>
@@ -48,7 +48,7 @@ export default function CartPage() {
       <footer className="footer">
         <div className="footer-content">
           <Link href="/" className="footer-logo">
-            GZ.CODE
+           HULO.STORE
           </Link>
           <div className="footer-copyright">© 2026 Gen Z Code. All rights reserved. Ship Fast.</div>
         </div>

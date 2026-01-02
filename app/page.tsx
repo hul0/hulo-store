@@ -55,7 +55,7 @@ function HomeContent() {
         {/* Logo */}
         <div className="logo">
           <Link href="/">
-            GZ<span>.</span>CODE
+            HULO<span>.</span>STORE
           </Link>
           <div className="beta-badge">BETA</div>
         </div>
@@ -159,7 +159,7 @@ function HomeContent() {
           <h1 className="hero-headline">
             SHIP CODE
             <br />
-            NO <span className="hero-headline-highlight">ERRORS.</span>
+            WITHOUT <span className="hero-headline-highlight">ERRORS.</span>
           </h1>
 
           {/* Subheadline */}
@@ -187,7 +187,7 @@ function HomeContent() {
             </div>
             <div>
               <div className="social-proof-title">2k+ Devs</div>
-              <div className="social-proof-subtitle">Shipping with GZ.CODE</div>
+              <div className="social-proof-subtitle">Shipping with HULO.STORE</div>
             </div>
           </div>
         </div>
@@ -281,7 +281,7 @@ function HomeContent() {
       <footer className="footer">
         <div className="footer-content">
           <Link href="/" className="footer-logo">
-            GZ.CODE
+           HULO.STORE
           </Link>
           <div className="footer-copyright">© 2026 Gen Z Code. All rights reserved. Ship Fast.</div>
           <div className="footer-links">

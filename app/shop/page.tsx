@@ -98,7 +98,7 @@ export default function ShopPage() {
       <nav className="navigation">
         <div className="logo">
           <Link href="/">
-            GZ<span>.</span>CODE
+            HULO<span>.</span>STORE
           </Link>
           <div className="beta-badge">BETA</div>
         </div>
@@ -218,7 +218,7 @@ export default function ShopPage() {
           <div className=" flex flex-col md:flex-col gap-8">
             {/* Mobile Filter Toggle */}
             <button
-              className="hidden btn-secondary w-full"
+              className="hidden btn-primary hover-lifts w-full"
               onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
             >
               {mobileFiltersOpen ? "CLOSE FILTERS" : "SHOW FILTERS"}
@@ -226,200 +226,200 @@ export default function ShopPage() {
 
             {/* Sidebar Filters */}
             <aside
-              className={`w-full md:w-72 flex-shrink-0 space-y-8 ${
-                mobileFiltersOpen ? "hidden block" : "hidden md:block"
+              className={`flex-shrink-0 space-y-8 ${
+                mobileFiltersOpen ? "block" : "hidden block"
               }`}
               style={{ borderRight: "2px solid transparent" }} // Placeholder for visual separation if needed
             >
-              {/* Search Widget */}
-              <div>
-                <h4 className="font-black text-lg mb-4 uppercase">Search</h4>
-                <input
-                  type="text"
-                  placeholder="Type to search..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#ccff00]"
-                />
-              </div>
-
-              {/* Sort Widget */}
-              <div>
-                <h4 className="font-black text-lg mb-4 uppercase">Sort By</h4>
-                <select
-                  value={sortOption}
-                  onChange={(e) => setSortOption(e.target.value)}
-                  className="w-full border-2 border-black bg-white p-3 font-mono text-sm focus:outline-none cursor-pointer hover:bg-gray-50"
-                >
-                  <option value="newest">Newest Arrivals</option>
-                  <option value="price-asc">Price: Low to High</option>
-                  <option value="price-desc">Price: High to Low</option>
-                </select>
-              </div>
-
-              {/* Price Range */}
-              <div>
-                <h4 className="font-black text-lg mb-4 uppercase">Price</h4>
-                <div className="flex items-center gap-2">
+              <div className="flex flex-row w-full h-full gap-8 p-3 m-3">
+                {/* Search Widget */}
+                <div>
+                  <h4 className="font-black text-lg mb-4 uppercase">Search</h4>
                   <input
-                    type="number"
-                    placeholder="Min"
-                    value={priceRange.min}
-                    onChange={(e) =>
-                      setPriceRange({
-                        ...priceRange,
-                        min: Number(e.target.value),
-                      })
-                    }
-                    className="w-full border-2 border-black p-2 font-mono text-center text-sm"
-                  />
-                  <span className="font-bold">-</span>
-                  <input
-                    type="number"
-                    placeholder="Max"
-                    value={priceRange.max}
-                    onChange={(e) =>
-                      setPriceRange({
-                        ...priceRange,
-                        max: Number(e.target.value),
-                      })
-                    }
-                    className="w-full border-2 border-black p-2 font-mono text-center text-sm"
+                    type="text"
+                    placeholder="Type to search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#ccff00]"
                   />
                 </div>
-              </div>
 
-              {/* Categories */}
-              <div>
-                <h4 className="font-black text-lg mb-4 uppercase">
-                  Categories
-                </h4>
-                <div className="flex flex-col gap-2">
-                  {allCategories.map((cat) => (
-                    <label
-                      key={cat}
-                      className="flex items-center gap-3 cursor-pointer group select-none"
-                    >
-                      <div
-                        className={`w-5 h-5 border-2 border-black flex items-center justify-center transition-all ${
-                          selectedCategories.includes(cat)
-                            ? "bg-black"
-                            : "bg-white group-hover:bg-[#ccff00]"
-                        }`}
+                {/* Sort Widget */}
+                <div>
+                  <h4 className="font-black text-lg mb-4 uppercase">Sort By</h4>
+                  <select
+                    value={sortOption}
+                    onChange={(e) => setSortOption(e.target.value)}
+                    className="w-full border-2 border-black bg-white p-3 font-mono text-sm focus:outline-none cursor-pointer hover:bg-gray-50"
+                  >
+                    <option value="newest">Newest Arrivals</option>
+                    <option value="price-asc">Price: Low to High</option>
+                    <option value="price-desc">Price: High to Low</option>
+                  </select>
+                </div>
+
+                {/* Price Range */}
+                <div>
+                  <h4 className="font-black text-lg mb-4 uppercase">Price</h4>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="number"
+                      placeholder="Min"
+                      value={priceRange.min}
+                      onChange={(e) =>
+                        setPriceRange({
+                          ...priceRange,
+                          min: Number(e.target.value),
+                        })
+                      }
+                      className="w-full border-2 border-black p-2 font-mono text-center text-sm"
+                    />
+                    <span className="font-bold">-</span>
+                    <input
+                      type="number"
+                      placeholder="Max"
+                      value={priceRange.max}
+                      onChange={(e) =>
+                        setPriceRange({
+                          ...priceRange,
+                          max: Number(e.target.value),
+                        })
+                      }
+                      className="w-full border-2 border-black p-2 font-mono text-center text-sm"
+                    />
+                  </div>
+                </div>
+
+                {/* Categories */}
+                <div>
+                  <h4 className="font-black text-lg mb-4 uppercase">
+                    Categories
+                  </h4>
+                  <div className="flex flex-col gap-2">
+                    {allCategories.map((cat) => (
+                      <label
+                        key={cat}
+                        className="flex items-center gap-3 cursor-pointer group select-none"
                       >
-                        {selectedCategories.includes(cat) && (
-                          <div className="w-2.5 h-2.5 bg-white" />
-                        )}
-                      </div>
-                      <span className="font-bold text-sm uppercase group-hover:translate-x-1 transition-transform">
-                        {cat}
-                      </span>
-                      <input
-                        type="checkbox"
-                        checked={selectedCategories.includes(cat)}
-                        onChange={() => toggleCategory(cat)}
-                        className="hidden"
-                      />
-                    </label>
-                  ))}
+                        <div
+                          className={`w-5 h-5 border-2 border-black flex items-center justify-center transition-all ${
+                            selectedCategories.includes(cat)
+                              ? "bg-black"
+                              : "bg-white group-hover:bg-[#ccff00]"
+                          }`}
+                        >
+                          {selectedCategories.includes(cat) && (
+                            <div className="w-2.5 h-2.5 bg-white" />
+                          )}
+                        </div>
+                        <span className="font-bold text-sm uppercase group-hover:translate-x-1 transition-transform">
+                          {cat}
+                        </span>
+                        <input
+                          type="checkbox"
+                          checked={selectedCategories.includes(cat)}
+                          onChange={() => toggleCategory(cat)}
+                          className="hidden"
+                        />
+                      </label>
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              {/* Tech Stacks */}
-              <div>
-                <h4 className="font-black text-lg mb-4 uppercase">
-                  Tech Stack
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {allTechStacks.map((stack) => (
-                    <button
-                      key={stack}
-                      onClick={() => toggleTechStack(stack)}
-                      className={`px-3 py-1 text-xs font-bold border-2 border-black uppercase transition-all
-                                    ${
-                                      selectedTechStacks.includes(stack)
-                                        ? "bg-black text-white"
-                                        : "bg-white text-black hover:bg-[#ccff00]"
-                                    }
+                {/* Tech Stacks */}
+                <div>
+                  <h4 className="font-black text-lg mb-4 uppercase">
+                    Tech Stack
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {allTechStacks.map((stack) => (
+                      <button
+                        key={stack}
+                        onClick={() => toggleTechStack(stack)}
+                        className={`px-3 py-3 text-xs font-bold border-2 border-black uppercase transition-all
+                      ${
+                        selectedTechStacks.includes(stack)
+                          ? "bg-black text-white"
+                          : "bg-white text-black hover:bg-[#ccff00]"
+                      }
                                 `}
-                    >
-                      {stack}
-                    </button>
-                  ))}
+                      >
+                        {stack}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-
               {/* Reset */}
               <button
                 onClick={clearFilters}
-                className="w-full btn-secondary text-sm"
+                className="w-full btn-primary hover-lift text-sm"
                 style={{ marginTop: "1rem" }}
               >
                 RESET FILTERS
               </button>
             </aside>
-
-            {/* Product Grid Area */}
-            <div className="flex-1">
-              {filteredProducts.length > 0 ? (
-                <div className="product-grid">
-                  {filteredProducts.map((product) => (
-                    <Link
-                      key={product.id}
-                      href={`/product/${product.slug}`}
-                      className="product-card hover-lift block"
-                    >
-                      <div className="product-image relative">
-                        {product.isNew && (
-                          <span className="product-badge new">NEW</span>
-                        )}
-                        {product.isSale && (
-                          <span className="product-badge sale">SALE</span>
-                        )}
-                        <img
-                          src={product.mainImage || "/placeholder.svg"}
-                          alt={product.name}
-                        />
-                        {/* Tech Stack Overlay on Card (Optional visual flair consistent with brand) */}
-                        <div className="absolute bottom-0 left-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <div className="flex gap-1 flex-wrap">
-                            {product.techStack.slice(0, 2).map((t) => (
-                              <span
-                                key={t}
-                                className="bg-black text-white text-[10px] px-1 font-bold"
-                              >
-                                {t}
-                              </span>
-                            ))}
-                          </div>
+          </div>
+          {/* Product Grid Area */}
+          <div className="flex-1">
+            {filteredProducts.length > 0 ? (
+              <div className="product-grid">
+                {filteredProducts.map((product) => (
+                  <Link
+                    key={product.id}
+                    href={`/product/${product.slug}`}
+                    className="product-card hover-lift block"
+                  >
+                    <div className="product-image relative">
+                      {product.isNew && (
+                        <span className="product-badge new">NEW</span>
+                      )}
+                      {product.isSale && (
+                        <span className="product-badge sale">SALE</span>
+                      )}
+                      <img
+                        src={product.mainImage || "/placeholder.svg"}
+                        alt={product.name}
+                      />
+                      {/* Tech Stack Overlay on Card (Optional visual flair consistent with brand) */}
+                      <div className="absolute bottom-0 left-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex gap-1 flex-wrap">
+                          {product.techStack.slice(0, 2).map((t) => (
+                            <span
+                              key={t}
+                              className="bg-black text-white text-[10px] px-1 font-bold"
+                            >
+                              {t}
+                            </span>
+                          ))}
                         </div>
                       </div>
-                      <h4>{product.name}</h4>
-                      <p>
-                        {product.originalPrice && (
-                          <span className="price-old">
-                            ${product.originalPrice.toFixed(2)}
-                          </span>
-                        )}
-                        ${product.price.toFixed(2)}
-                      </p>
-                    </Link>
-                  ))}
-                </div>
-              ) : (
-                <div className="border-2 border-dashed border-black p-12 text-center bg-gray-50">
-                  <h2 className="text-2xl font-black uppercase mb-4 opacity-50">
-                    NO RESULTS FOUND
-                  </h2>
-                  <button
-                    onClick={clearFilters}
-                    className="btn-primary hover-lift"
-                  >
-                    CLEAR FILTERS
-                  </button>
-                </div>
-              )}
-            </div>
+                    </div>
+                    <h4>{product.name}</h4>
+                    <p>
+                      {product.originalPrice && (
+                        <span className="price-old">
+                          ${product.originalPrice.toFixed(2)}
+                        </span>
+                      )}
+                      ${product.price.toFixed(2)}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="border-2 border-dashed border-black p-12 text-center bg-gray-50">
+                <h2 className="text-2xl font-black uppercase mb-4 opacity-50">
+                  NO RESULTS FOUND
+                </h2>
+                <button
+                  onClick={clearFilters}
+                  className="btn-primary hover-lift"
+                >
+                  CLEAR FILTERS
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -428,7 +428,7 @@ export default function ShopPage() {
       <footer className="footer">
         <div className="footer-content">
           <Link href="/" className="footer-logo">
-            GZ.CODE
+            HULO.STORE
           </Link>
           <div className="footer-copyright">
             © 2026 Gen Z Code. All rights reserved. Ship Fast.
