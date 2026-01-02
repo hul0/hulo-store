@@ -215,10 +215,10 @@ export default function ShopPage() {
             </span>
           </div>
 
-          <div className="flex flex-col md:flex-col gap-8">
+          <div className=" flex flex-col md:flex-col gap-8">
             {/* Mobile Filter Toggle */}
             <button
-              className="md:hidden btn-secondary w-full"
+              className="hidden btn-secondary w-full"
               onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
             >
               {mobileFiltersOpen ? "CLOSE FILTERS" : "SHOW FILTERS"}
@@ -227,7 +227,7 @@ export default function ShopPage() {
             {/* Sidebar Filters */}
             <aside
               className={`w-full md:w-72 flex-shrink-0 space-y-8 ${
-                mobileFiltersOpen ? "block" : "hidden md:block"
+                mobileFiltersOpen ? "hidden block" : "hidden md:block"
               }`}
               style={{ borderRight: "2px solid transparent" }} // Placeholder for visual separation if needed
             >
