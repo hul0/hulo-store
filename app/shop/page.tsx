@@ -207,6 +207,19 @@ export default function ShopPage() {
           className="container"
           style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
         >
+          {/* Search Widget */}
+          <div>
+            <div className="trending-header">
+              <h3>SEARCH</h3>
+            </div>
+            <input
+              type="text"
+              placeholder="Type to search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="btn-secondary w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#ccff00] focus:bg-[#ccff00]"
+            />
+          </div>
           {/* Header Area */}
           <div className="trending-header">
             <h3>SHOP ALL</h3>
@@ -214,7 +227,7 @@ export default function ShopPage() {
               {filteredProducts.length} PRODUCTS
             </span>
           </div>
-
+          {/* Wrapping Div for filter items */}
           <div className=" flex flex-col md:flex-col gap-8">
             {/* Mobile Filter Toggle */}
             <button
@@ -231,26 +244,16 @@ export default function ShopPage() {
               }`}
               style={{ borderRight: "2px solid transparent" }} // Placeholder for visual separation if needed
             >
-              <div className="flex flex-row w-full h-full gap-8 p-3 m-3">
-                {/* Search Widget */}
-                <div>
-                  <h4 className="font-black text-lg mb-4 uppercase">Search</h4>
-                  <input
-                    type="text"
-                    placeholder="Type to search..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full border-2 border-black p-3 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-[#ccff00]"
-                  />
-                </div>
-
+              <div className="flex flex-col sm:flex sm:flex-row  w-full h-full gap-8 p-3 m-3 flex-wrap">
                 {/* Sort Widget */}
                 <div>
-                  <h4 className="font-black text-lg mb-4 uppercase">Sort By</h4>
+                  <h4 className="font-black text-2xl mb-4 uppercase">
+                    Sort By
+                  </h4>
                   <select
                     value={sortOption}
                     onChange={(e) => setSortOption(e.target.value)}
-                    className="w-full border-2 border-black bg-white p-3 font-mono text-sm focus:outline-none cursor-pointer hover:bg-gray-50"
+                    className="w-full btn-secondary border-2 border-black bg-white p-3 font-mono text-sm focus:outline-none cursor-pointer hover:bg-gray-50"
                   >
                     <option value="newest">Newest Arrivals</option>
                     <option value="price-asc">Price: Low to High</option>
@@ -260,7 +263,7 @@ export default function ShopPage() {
 
                 {/* Price Range */}
                 <div>
-                  <h4 className="font-black text-lg mb-4 uppercase">Price</h4>
+                  <h4 className="font-black text-2xl mb-4 uppercase">Price</h4>
                   <div className="flex items-center gap-2">
                     <input
                       type="number"
@@ -272,7 +275,7 @@ export default function ShopPage() {
                           min: Number(e.target.value),
                         })
                       }
-                      className="w-full border-2 border-black p-2 font-mono text-center text-sm"
+                      className="w-full btn-secondary border-2 border-black p-2 font-mono text-center text-sm"
                     />
                     <span className="font-bold">-</span>
                     <input
@@ -285,14 +288,14 @@ export default function ShopPage() {
                           max: Number(e.target.value),
                         })
                       }
-                      className="w-full border-2 border-black p-2 font-mono text-center text-sm"
+                      className="w-full btn-secondary border-2 border-black p-2 font-mono text-center text-sm"
                     />
                   </div>
                 </div>
 
                 {/* Categories */}
                 <div>
-                  <h4 className="font-black text-lg mb-4 uppercase">
+                  <h4 className="font-black text-2xl mb-4 uppercase">
                     Categories
                   </h4>
                   <div className="flex flex-col gap-2">
@@ -302,7 +305,7 @@ export default function ShopPage() {
                         className="flex items-center gap-3 cursor-pointer group select-none"
                       >
                         <div
-                          className={`w-5 h-5 border-2 border-black flex items-center justify-center transition-all ${
+                          className={`w-5 h-5 border-3 border-black flex items-center justify-center transition-all ${
                             selectedCategories.includes(cat)
                               ? "bg-black"
                               : "bg-white group-hover:bg-[#ccff00]"
@@ -312,7 +315,7 @@ export default function ShopPage() {
                             <div className="w-2.5 h-2.5 bg-white" />
                           )}
                         </div>
-                        <span className="font-bold text-sm uppercase group-hover:translate-x-1 transition-transform">
+                        <span className="font-bold text-xl uppercase group-hover:translate-x-1 transition-transform">
                           {cat}
                         </span>
                         <input
@@ -328,15 +331,15 @@ export default function ShopPage() {
 
                 {/* Tech Stacks */}
                 <div>
-                  <h4 className="font-black text-lg mb-4 uppercase">
+                  <h4 className="font-black text-2xl mb-4 uppercase">
                     Tech Stack
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 ">
                     {allTechStacks.map((stack) => (
                       <button
                         key={stack}
                         onClick={() => toggleTechStack(stack)}
-                        className={`px-3 py-3 text-xs font-bold border-2 border-black uppercase transition-all
+                        className={`text-xl btn-tech hover-lift font-bold border-2 border-black uppercase transition-all
                       ${
                         selectedTechStacks.includes(stack)
                           ? "bg-black text-white"
@@ -368,7 +371,7 @@ export default function ShopPage() {
                   <Link
                     key={product.id}
                     href={`/product/${product.slug}`}
-                    className="product-card hover-lift block"
+                    className="product-card btn-tech hover-lift hover:bg-[#ccff00] block"
                   >
                     <div className="product-image relative">
                       {product.isNew && (

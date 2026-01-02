@@ -353,7 +353,8 @@ body {
 
 .hero-headline-highlight {
   color: #fff;
-  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000,
+    -2px 2px 0 #000, 2px 2px 0 #000;
 }
 
 .hero-subtext {
@@ -401,12 +402,25 @@ body {
   transition: all 0.2s ease;
 }
 
+.btn-tech {
+  display: inline-block;
+  padding: 18px 40px;
+  font-family: "Archivo Black", sans-serif;
+  font-size: 16px;
+  text-decoration: none;
+  border: 2px solid #111;
+  transition: all 0.2s ease;
+    box-shadow: 4px 4px 0px #111;
+
+}
+
 .btn-primary {
   background: #111;
   color: #ccff00;
   box-shadow: 4px 4px 0px #999;
 }
 
+/* .btn-tech, */
 .btn-secondary {
   background: #fff;
   color: #111;
@@ -701,7 +715,7 @@ body {
 }
 
 .product-card {
-  border: 2px solid #eee;
+  border: 2px solid black;
   padding: 10px;
   transition: 0.2s;
 }
